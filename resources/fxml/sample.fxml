@@ -3,6 +3,46 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<GridPane fx:controller="sample.Controller"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-</GridPane>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import com.joshuapetersen.backgammontournament.ui.CurrentMatchesTable?>
+<?import javafx.scene.control.TabPane?>
+<?import com.joshuapetersen.backgammontournament.ui.BackgammonTournamentTable?>
+<?import com.joshuapetersen.backgammontournament.ui.FinishedMatchesTable?>
+<TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+         prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.121"
+         xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.joshuapetersen.backgammontournament.main.Controller">
+    <tabs>
+        <Tab text="RankingsTable">
+            <content>
+                <VBox prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <BackgammonTournamentTable fx:id="backgammonTournamentTable"/>
+                        <VBox>
+                            <children>
+                                <Label styleClass="TableTitle"
+                                       stylesheets="../../../../BackgammonTournamentComponents/resources/stylesheets/DefaultTableStyles.css"
+                                       text="Matches">
+                                    <font>
+                                        <Font name="System Bold" size="16.0"/>
+                                    </font>
+                                </Label>
+                                <CurrentMatchesTable fx:id="currentMatchesTable"/>
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+            </content>
+        </Tab>
+        <Tab text="Finished Matches">
+            <content>
+                <VBox prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <FinishedMatchesTable fx:id="finishedMatchesTable"/>
+                    </children>
+                </VBox>
+            </content>
+        </Tab>
+    </tabs>
+</TabPane>
