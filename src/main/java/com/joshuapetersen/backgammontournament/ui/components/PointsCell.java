@@ -204,31 +204,18 @@ public class PointsCell extends TableCell<MatchInfo, String>
         {
             getTableView().getItems().remove(matchInfo);
             GlobalData.FINISHED_MATCHES.add(matchInfo);
-//            Player playerOne = DataManager.findPlayer(matchInfo.getContestantOne());
-//            Player playerTwo = DataManager.findPlayer(matchInfo.getContestantTwo());
-//            playerOne.addPoints(matchInfo.getContestantOnePoints());
-//            playerTwo.addPoints(matchInfo.getContestantTwoPoints());
+            Player playerOne = DataManager.findPlayer(matchInfo.getContestantOne());
+            Player playerTwo = DataManager.findPlayer(matchInfo.getContestantTwo());
+            if(playerOne.getName().equals(matchInfo.getWinner()))
+            {
+                playerOne.setGamesWon(playerOne.getGamesWon()+1);
+            }
+            else if(playerTwo.getName().equals(matchInfo.getWinner()))
+            {
+                playerTwo.setGamesWon(playerTwo.getGamesWon()+1);
+            }
 
         }
-    }
-
-    private int getContestantPoints(MatchInfo matchInfo, Player player)
-    {
-        if (matchInfo.getContestantOne().equals(player.getName()))
-        {
-            return matchInfo.getContestantOnePoints();
-        }
-        if (matchInfo.getContestantTwo().equals(player.getName()))
-        {
-            return matchInfo.getContestantTwoPoints();
-        }
-        return Integer.parseInt(null);
-    }
-
-    private boolean matchHasPlayer(MatchInfo matchInfo, Player player)
-    {
-        return matchInfo.getContestantOne().equals(player.getName()) || matchInfo.getContestantTwo().equals(
-                player.getName());
     }
 
     private void stopEditing(MatchInfo matchInfo)
@@ -240,22 +227,6 @@ public class PointsCell extends TableCell<MatchInfo, String>
         this.getTableColumn().setEditable(!stopEditing);
     }
 
-    public void setupUpToolTip()
-    {
-        MatchInfo matchInfo = (MatchInfo) this.getTableRow().getItem();
-        switch (contestantType)
-        {
-
-            case CONTESTENT_ONE:
-                Tooltip.install(this, new Tooltip(matchInfo.getContestantOne()));
-                break;
-            case CONTESTENT_TWO:
-                Tooltip.install(this, new Tooltip(matchInfo.getContestantTwo()));
-                break;
-            case NONE:
-                break;
-        }
-    }
 
     private void debugInfo(MatchInfo matchInfo)
     {
@@ -269,26 +240,6 @@ public class PointsCell extends TableCell<MatchInfo, String>
         System.out.println("\n");
     }
 
-
-    private void storeOldScore(String score)
-    {
-        switch (getContestantType())
-        {
-            case CONTESTENT_ONE:
-//                getMatchInfo().getContestentID(GlobalData.findPlayer(Controller.backgammonTournamentTable.getItems(),getMatchInfo().getContestantOne()));
-                getMatchInfo().setContestantOneOldScore(Integer.parseInt(score));
-                break;
-            case CONTESTENT_TWO:
-//                getMatchInfo().getContestentID(GlobalData.findPlayer(Controller.backgammonTournamentTable.getItems(),getMatchInfo().getContestantTwo()));
-                getMatchInfo().setContestantTwoOldScore(Integer.parseInt(score));
-                break;
-        }
-    }
-
-    private boolean hasMatchFinished(MatchInfo matchInfo)
-    {
-        return false;
-    }
 
 }
 
