@@ -41,17 +41,28 @@ public class MatchInfo
         checkForGameFinished();
 
         this.gameFinishedProperty = new SimpleBooleanProperty(this.gameFinished);
-        this.contestantOneOldScore.addListener((observable, oldValue, newValue) ->
-        {
-            int value = (int) (newValue != null ? newValue : oldValue);
-            this.playerOne.addPoints(this.getScoreToAddOn(this.playerOne));
-
-        });
-        this.contestantTwoOldScore.addListener((observable, oldValue, newValue) ->
-        {
-            int value = (int) (newValue != null ? newValue : oldValue);
-            this.playerTwo.addPoints(this.getScoreToAddOn(this.playerTwo));
-        });
+//        this.contestantOneOldScore.addListener((observable, oldValue, newValue) ->
+//        {
+//            int value = (int) (newValue != null ? newValue : oldValue);
+//            this.playerOne.addPoints(newValue.intValue()-oldValue.intValue()
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//            );
+//
+//        });
+//        this.contestantTwoOldScore.addListener((observable, oldValue, newValue) ->
+//        {
+//            int value = (int) (newValue != null ? newValue : oldValue);
+//            this.playerTwo.addPoints(newValue.intValue()-oldValue.intValue());
+//        });
         this.contestantOnePoints.addListener((observable, oldValue, newValue) ->
         {
             int value = (int) (newValue != null ? newValue : oldValue);
@@ -251,7 +262,7 @@ public class MatchInfo
 
     public void setContestantOneOldScore(int contestantOneOldScore)
     {
-        this.contestantOneOldScore.set(contestantOneOldScore);
+                this.contestantOneOldScore.set(contestantOneOldScore);
     }
 
     public int getContestantTwoOldScore()

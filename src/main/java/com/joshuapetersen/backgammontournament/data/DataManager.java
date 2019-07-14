@@ -5,12 +5,13 @@ import org.hildan.fxgson.FxGson;
 
 import java.io.*;
 import java.net.URL;
+import java.util.Objects;
 
 public class DataManager
 {
     private static BackgammonTournamentData backgammonTournamentData;
-    private static String path = DataManager.class.getClassLoader().getResource(
-            "tournament/data/TournamentData.json").getPath();
+    private static String path = Objects.requireNonNull(DataManager.class.getClassLoader().getResource(
+            "TournamentData.json")).getPath();
 
     public static String[] names;
     public static MatchInfo[] matches;
