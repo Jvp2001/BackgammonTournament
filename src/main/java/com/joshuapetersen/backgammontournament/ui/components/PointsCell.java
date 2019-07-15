@@ -86,6 +86,7 @@ public class PointsCell extends TableCell<MatchInfo, String>
             newValue = text;
             Integer floor = Math.toIntExact(Math.round(Calculator.eval(text)));
             System.out.println(contestantType + ": " + floor);
+
             commitEdit(floor.toString());
         }
 //        storeOldScore(newValue);
@@ -159,7 +160,6 @@ public class PointsCell extends TableCell<MatchInfo, String>
                 matchInfo.checkForGameFinished();
                 if (TournamentWinConditions.wonGame(matchInfo.getContestantTwoPoints()))
                     matchInfo.setWinner(matchInfo.getContestantTwo());
-                stopEditing(matchInfo);
                 debugInfo(matchInfo);
                 transferRow();
                 Controller.updatePlayer(getMatchInfo().getContestantTwo());
@@ -170,8 +170,6 @@ public class PointsCell extends TableCell<MatchInfo, String>
                 break;
 
         }
-
-        stopEditing(matchInfo);
         getTableView().refresh();
         Controller.backgammonTournamentTable.refresh();
     }
@@ -218,14 +216,6 @@ public class PointsCell extends TableCell<MatchInfo, String>
         }
     }
 
-    private void stopEditing(MatchInfo matchInfo)
-    {
-        boolean stopEditing = matchInfo.getGameFinished() && TournamentWinConditions.wonGame(
-                matchInfo.getContestantOnePoints()) || TournamentWinConditions.wonGame(
-                matchInfo.getContestantTwoPoints());
-        this.setEditable(!matchInfo.getGameFinished());
-        this.getTableColumn().setEditable(!stopEditing);
-    }
 
 
     private void debugInfo(MatchInfo matchInfo)

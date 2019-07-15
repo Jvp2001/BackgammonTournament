@@ -1,10 +1,15 @@
 package com.joshuapetersen.backgammontournament.data;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.joshuapetersen.backgammontournament.main.Controller;
 import org.hildan.fxgson.FxGson;
 
 import java.io.*;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class DataManager
@@ -19,6 +24,23 @@ public class DataManager
     static
     {
         retrieveTournamentData();
+    }
+
+    public static void saveData()
+    {
+        Player[] players = (Player[]) Controller.backgammonTournamentTable.getItems().toArray();
+        MatchInfo[] array = (MatchInfo[]) Arrays.asList(Controller.currentMatchesTable.getItems(),Controller.finishedMatchesTable.getItems()).toArray();
+
+        BackgammonTournamentData tournamentData = new BackgammonTournamentData(players,matches);
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        try (FileWriter fileWriter = new FileWriter(path))
+        {
+            fileWriter.write(gson.toJson(tournamentData));
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public static BackgammonTournamentData retrieveTournamentData()

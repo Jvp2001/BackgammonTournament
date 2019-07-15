@@ -26,7 +26,6 @@ public class CurrentMatchesTable extends TableView<MatchInfo>
 
 
     private TableColumn<MatchInfo, Integer> pointsColumn = new TableColumn<>("Points");
-    //TODO Add change listeners to cell values for the point columns.
     private TableColumn opponentOnePoints = new PointsTableColumn("Opponent One", MatchWonBy.CONTESTENT_ONE);
     private TableColumn opponentTwoPoints = new PointsTableColumn("Opponent Two", MatchWonBy.CONTESTENT_TWO);
 
@@ -63,11 +62,10 @@ public class CurrentMatchesTable extends TableView<MatchInfo>
         // GUIUtils.autoFitTable(this);
         //setup columns
         //setupColumn(rankColumn,"rank",false);
-        //TODO Get rid of oppent name columns being editable.
         setupColumn(opponentNameColumn, "", false);
-        setupColumn(opponentOneNameColumn, "contestantOne", !false);
+        setupColumn(opponentOneNameColumn, "contestantOne", false);
         opponentOneNameColumn.setCellFactory(param -> new TextFieldTableCell<>());
-        setupColumn(opponentTwoNameColumn, "contestantTwo", !false);
+        setupColumn(opponentTwoNameColumn, "contestantTwo", false);
         opponentTwoNameColumn.setCellFactory(param -> new TextFieldTableCell<>());
         opponentNameColumn.getColumns().addAll(opponentOneNameColumn, opponentTwoNameColumn);
 
