@@ -71,14 +71,13 @@
   "matches": [
     {
       "contestantOne": "Josh",
-      "contestantOne": "Josh",
       "contestantTwo": "Oliver",
       "contestantOnePoints": 0,
       "contestantTwoPoints": 0
     },
     {
-    "contestantOne":"Josh",
-    "contestantTwo":"Dominic",
+    "contestantOne":"Dominic",
+    "contestantTwo":"Josh",
     "contestantOnePoints":0,
     "contestantTwoPoints":0
     }
