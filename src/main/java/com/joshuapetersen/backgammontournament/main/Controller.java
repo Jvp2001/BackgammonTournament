@@ -9,8 +9,6 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
-import java.util.Arrays;
-
 import static com.joshuapetersen.backgammontournament.data.GlobalData.*;
 
 public class Controller
@@ -72,29 +70,21 @@ public class Controller
     public static void updatePlayer(String name)
     {
         Player foundPlayer = null;
-        for (Player player : GlobalData.PLAYERS_DATA)
+        for (Player player : backgammonTournamentTable.getItems())
         {
             if(player.getName().equals(name))
             {
                 foundPlayer = player;
-                System.out.println(foundPlayer.getName());
                 break;
             }
         }
         int total = 0;
-        assert foundPlayer != null;
         for (MatchInfo matchInfo : MATCHES_DATA)
         {
-            if(Arrays.asList(matchInfo.getContestantOne(),matchInfo.getContestantTwo()).contains(foundPlayer.getName()))
-            {
-                System.out.println("Found Contestant!");
-
-                total += matchInfo.getContestantPoints(foundPlayer);
-            }
-
+            total += matchInfo.getContestantPoints(foundPlayer);
         }
         foundPlayer.setTotalPoints(total);
-        //loadData();
+        loadData();
     }
     private static void removeDiscrepancies()
     {

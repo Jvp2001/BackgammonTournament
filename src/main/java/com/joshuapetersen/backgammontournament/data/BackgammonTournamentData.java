@@ -41,15 +41,7 @@ public class BackgammonTournamentData
         this.matches = Arrays.asList(matches);
 
     }
-    public BackgammonTournamentData(
-            Player[] players, MatchInfo[] matches)
-    {
-        ;
-        this.pointsToWinGame = 11;
-        this.players = players;
-        this.matches = Arrays.asList(matches);
 
-    }
 //    public  void storeMatches()
 //    {
 //        Player[] players1 = this.players;

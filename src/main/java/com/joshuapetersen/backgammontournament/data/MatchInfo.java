@@ -63,26 +63,26 @@ public class MatchInfo
 //            int value = (int) (newValue != null ? newValue : oldValue);
 //            this.playerTwo.addPoints(newValue.intValue()-oldValue.intValue());
 //        });
-//        this.contestantOnePoints.addListener((observable, oldValue, newValue) ->
-//        {
-//            int value = (int) (newValue != null ? newValue : oldValue);
-//            System.out.println("Property changed");
-//            if (TournamentWinConditions.wonGame(value))
-//            {
-//                System.out.println("Game finished");
-//                gameFinished = true;
-//            }
-//
-//        });
-//        this.contestantTwoPoints.addListener((observable, oldValue, newValue) ->
-//        {
-//            int value = (int) (newValue != null ? newValue : oldValue);
-//            if (TournamentWinConditions.wonGame(value))
-//            {
-//                this.playerTwo.addPoints(this.getScoreToAddOn(this.playerTwo));
-//                gameFinished = true;
-//            }
-//        });
+        this.contestantOnePoints.addListener((observable, oldValue, newValue) ->
+        {
+            int value = (int) (newValue != null ? newValue : oldValue);
+            System.out.println("Property changed");
+            if (TournamentWinConditions.wonGame(value))
+            {
+                System.out.println("Game finished");
+                gameFinished = true;
+            }
+
+        });
+        this.contestantTwoPoints.addListener((observable, oldValue, newValue) ->
+        {
+            int value = (int) (newValue != null ? newValue : oldValue);
+            if (TournamentWinConditions.wonGame(value))
+            {
+                this.playerTwo.addPoints(this.getScoreToAddOn(this.playerTwo));
+                gameFinished = true;
+            }
+        });
 
         winner = getContestantTwo();
         wonBy = MatchWonBy.CONTESTENT_TWO;

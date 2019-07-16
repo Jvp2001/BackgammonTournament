@@ -10,52 +10,39 @@
 <?import javafx.scene.control.TabPane?>
 <?import com.joshuapetersen.backgammontournament.ui.components.BackgammonTournamentTable?>
 <?import com.joshuapetersen.backgammontournament.ui.components.FinishedMatchesTable?>
-<?import javafx.scene.layout.BorderPane?>
-<?import com.joshuapetersen.backgammontournament.ui.components.menus.DynamicMenuBar?>
-<?import com.joshuapetersen.backgammontournament.ui.components.menus.FileMenu?>
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-      xmlns="http://javafx.com/javafx/8.0.121"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.joshuapetersen.backgammontournament.main.Controller">
-
-    <DynamicMenuBar>
-        <menus>
-            <FileMenu></FileMenu>
-        </menus>
-    </DynamicMenuBar>
-
-    <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
-        <tabs>
-            <Tab text="RankingsTable">
-                <content>
-                    <VBox>
-                        <children>
-                            <BackgammonTournamentTable fx:id="btt"/>
-                            <VBox>
-                                <children>
-                                    <Label styleClass="TableTitle"
-                                           stylesheets=""
-                                           text="Matches">
-                                        <font>
-                                            <Font name="System Bold" size="16.0"/>
-                                        </font>
-                                    </Label>
-                                    <CurrentMatchesTable fx:id="cmt"/>
-                                </children>
-                            </VBox>
-                        </children>
-                    </VBox>
-                </content>
-            </Tab>
-            <Tab text="Finished Matches">
-                <content>
-                    <VBox>
-                        <children>
-                            <FinishedMatchesTable fx:id="fmt"/>
-                        </children>
-                    </VBox>
-                </content>
-            </Tab>
-        </tabs>
-    </TabPane>
-</VBox>
+<TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+         prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.121"
+         xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.joshuapetersen.backgammontournament.main.Controller">
+    <tabs>
+        <Tab text="RankingsTable">
+            <content>
+                <VBox prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <BackgammonTournamentTablbtte fx:id=""/>
+                        <VBox>
+                            <children>
+                                <Label styleClass="TableTitle"
+                                       stylesheets="../../../../BackgammonTournamentComponents/resources/stylesheets/DefaultTableStyles.css"
+                                       text="Matches">
+                                    <font>
+                                        <Font name="System Bold" size="16.0"/>
+                                    </font>
+                                </Label>
+                                <CurrentMatchesTable fx:id="cmt"/>
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+            </content>
+        </Tab>
+        <Tab text="Finished Matches">
+            <content>
+                <VBox prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <FinishedMatchesTable fx:id="fmt"/>
+                    </children>
+                </VBox>
+            </content>
+        </Tab>
+    </tabs>
+</TabPane>
