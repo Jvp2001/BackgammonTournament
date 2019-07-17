@@ -114,4 +114,14 @@ public class DataManager
     {
         return getBackgammonTournamentData().findPlayer(name);
     }
+
+    public static void saveData()
+    {
+//        System.out.println("Players\n====================================\n");
+//        for (Player player : GlobalData.PLAYERS_DATA)
+//        {
+//            System.out.println(player);
+//        }
+
+    }
 }

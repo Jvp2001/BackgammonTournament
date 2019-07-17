@@ -15,7 +15,7 @@ public class SaveMenuItem extends MenuItem
         this.setOnAction(event ->
         {
             System.out.println("Saving...");
-//            DataManager.saveData();
+            DataManager.saveData();
         });
     }
 

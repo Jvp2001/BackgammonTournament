@@ -161,8 +161,8 @@ public class PointsCell extends TableCell<MatchInfo, String>
                     matchInfo.setWinner(matchInfo.getContestantTwo());
                 stopEditing(matchInfo);
                 debugInfo(matchInfo);
-                transferRow();
                 Controller.updatePlayer(getMatchInfo().getContestantTwo());
+                transferRow();
 
 
                 break;
