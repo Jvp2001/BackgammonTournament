@@ -9,6 +9,8 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
+import java.util.Arrays;
+
 import static com.joshuapetersen.backgammontournament.data.GlobalData.*;
 
 public class Controller
@@ -78,10 +80,17 @@ public class Controller
                 break;
             }
         }
+        if(foundPlayer == null) return;
         int total = 0;
         for (MatchInfo matchInfo : MATCHES_DATA)
         {
-            total += matchInfo.getContestantPoints(foundPlayer);
+
+
+            if(Arrays.asList(matchInfo.getContestantOne(),matchInfo.getContestantTwo()).contains(foundPlayer.getName()))
+            {
+                int contestantPoints = matchInfo.getContestantPoints(foundPlayer);
+                total += contestantPoints;
+            }
         }
         foundPlayer.setTotalPoints(total);
         loadData();

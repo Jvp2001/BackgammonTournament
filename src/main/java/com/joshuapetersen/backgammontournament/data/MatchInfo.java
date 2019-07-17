@@ -327,7 +327,7 @@ public class MatchInfo
             case TWO:
                 return getContestantTwoPoints();
         }
-        return Integer.parseInt(null);
+        return -1;
     }
 
     @Override
