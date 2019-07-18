@@ -16,7 +16,7 @@ public class DataManager
 {
     private static BackgammonTournamentData backgammonTournamentData;
     private static String path = Objects.requireNonNull(DataManager.class.getClassLoader().getResource(
-            "TournamentData.json")).getPath();
+            "data/TournamentData.json")).getPath();
 
     public static String[] names;
     public static MatchInfo[] matches;
@@ -28,7 +28,7 @@ public class DataManager
         retrieveTournamentData();
     }
 
-    public static final File TEMPLATE_DATA_FILE = new File("./TournamentData.json");
+    public static final File TEMPLATE_DATA_FILE = new File("data/TournamentData.json");
 
     //        System.out.println("Players\n====================================\n");
 //        for (Player player : GlobalData.PLAYERS_DATA)

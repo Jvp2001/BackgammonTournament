@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Main extends Application
@@ -17,6 +18,7 @@ public class Main extends Application
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/sample.fxml"));
         primaryStage.setTitle("Backgammon Tournament");
         primaryStage.setScene(new Scene(root, APP_WIDTH, APP_HEIGHT));
+        primaryStage.getIcons().setAll(new Image("/images/iconbig.png"));
         primaryStage.show();
     }
 

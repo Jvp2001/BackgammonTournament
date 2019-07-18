@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="BackgammonTournament">
+    <output-path>$PROJECT_DIR$/output/artifacts/BackgammonTournament</output-path>
+    <root id="root">
+      <element id="archive" name="BackgammonTournament.jar">
+        <element id="module-output" name="BackgammonTournament" />
+      </element>
+    </root>
+  </artifact>
+</component>
