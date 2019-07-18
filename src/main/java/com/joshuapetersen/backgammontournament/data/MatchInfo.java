@@ -1,8 +1,11 @@
 package com.joshuapetersen.backgammontournament.data;
 
+import com.google.gson.annotations.SerializedName;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,15 +19,14 @@ public class MatchInfo
 
     private SimpleStringProperty contestantOne, contestantTwo;
     private SimpleIntegerProperty contestantOnePoints, contestantTwoPoints;
-    private transient boolean gameFinished;
-    private transient SimpleBooleanProperty gameFinishedProperty;
+    @SerializedName(value = "finished")
+    private boolean gameFinished = false;
     private transient Player playerOne,playerTwo;
     private transient SimpleIntegerProperty contestantOneOldScore;
     private transient SimpleIntegerProperty  contestantTwoOldScore;
 
-    private transient String winner;
-    private transient MatchWonBy wonBy;
-
+    private String winner = "";
+    private MatchWonBy wonBy = MatchWonBy.NONE;
     public MatchInfo(String contestantOne, String contestantTwo, int contestantOnePoints, int contestantTwoPoints)
     {
         this.contestantOne = new SimpleStringProperty(contestantOne);
@@ -40,7 +42,17 @@ public class MatchInfo
 
         checkForGameFinished();
 
-        this.gameFinishedProperty = new SimpleBooleanProperty(this.gameFinished);
+        if(getContestantOnePoints() >= 11)
+        {
+            this.wonBy = MatchWonBy.CONTESTENT_ONE;
+            this.winner = getContestantOne();
+        }
+        else if(getContestantTwoPoints() >= 11)
+        {
+            this.wonBy = MatchWonBy.CONTESTENT_TWO;
+            this.winner = getContestantTwo();
+        }
+
 //        this.contestantOneOldScore.addListener((observable, oldValue, newValue) ->
 //        {
 //            int value = (int) (newValue != null ? newValue : oldValue);
@@ -89,15 +101,6 @@ public class MatchInfo
 
     }
 
-    public boolean gameFinishedPropertyProperty()
-    {
-        return gameFinishedProperty.get();
-    }
-
-    public void setGameFinishedProperty(boolean gameFinishedProperty)
-    {
-        this.gameFinishedProperty.set(gameFinishedProperty);
-    }
 
 
     public void checkForGameFinished()
@@ -221,10 +224,6 @@ public class MatchInfo
     }
 
 
-    public boolean isGameFinishedProperty()
-    {
-        return gameFinishedProperty.get();
-    }
 
     public Player getPlayerOne()
     {

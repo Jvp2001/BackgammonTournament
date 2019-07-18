@@ -11,7 +11,7 @@ public class SaveMenuItem extends MenuItem
     public SaveMenuItem()
     {
         super("Save");
-        this.setAccelerator(new KeyCodeCombination(KeyCode.S, KeyCombination.META_DOWN, KeyCombination.SHORTCUT_DOWN));
+        this.setAccelerator(new KeyCodeCombination(KeyCode.S, KeyCombination.SHORTCUT_DOWN));
         this.setOnAction(event ->
         {
             System.out.println("Saving...");

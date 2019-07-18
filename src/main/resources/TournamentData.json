@@ -68,7 +68,7 @@
       "totalPoints": 0
     }
   ],
-  "matches": [
+  "currentMatches": [
     {
       "contestantOne": "Josh",
       "contestantTwo": "Oliver",
@@ -81,5 +81,8 @@
     "contestantOnePoints":0,
     "contestantTwoPoints":0
     }
+  ],
+  "finishedMatches": [
+
   ]
 }

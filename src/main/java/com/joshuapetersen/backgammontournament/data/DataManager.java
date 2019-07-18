@@ -1,10 +1,15 @@
 package com.joshuapetersen.backgammontournament.data;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.joshuapetersen.backgammontournament.main.Controller;
+import com.joshuapetersen.backgammontournament.utilities.DataFileHandler;
+import com.joshuapetersen.backgammontournament.utilities.FileIO;
 import org.hildan.fxgson.FxGson;
 
 import java.io.*;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.Objects;
 
 public class DataManager
@@ -15,23 +20,36 @@ public class DataManager
 
     public static String[] names;
     public static MatchInfo[] matches;
-
+    private static GsonBuilder gsonBuilder = new GsonBuilder().setPrettyPrinting();
+    private static File dataFile = DataFileHandler.getDataFile();
     static
     {
+        FxGson.addFxSupport(gsonBuilder);
         retrieveTournamentData();
     }
+
+    public static final File TEMPLATE_DATA_FILE = new File("./TournamentData.json");
+
+    //        System.out.println("Players\n====================================\n");
+//        for (Player player : GlobalData.PLAYERS_DATA)
+//        {
+//            System.out.println(player);
+//        }
 
     public static BackgammonTournamentData retrieveTournamentData()
     {
 
         try
         {
-            File file = new File(path);
-            System.out.println("Can read: " + file.canRead());
+            File file = DataFileHandler.getDataFile();
+
+            //createFile(file);
+
+            System.out.println("Can read: " + dataFile.canRead());
 //            if (backgammonTournamentData != null) return backgammonTournamentData;
             Gson gson = FxGson.coreBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 
-            BackgammonTournamentData backgammonTournamentData = gson.fromJson(new FileReader(path),
+            BackgammonTournamentData backgammonTournamentData = gson.fromJson(new FileReader(dataFile),
                     BackgammonTournamentData.class);
 
             Player[] players = backgammonTournamentData.getPlayers();
@@ -107,21 +125,39 @@ public class DataManager
 
     public static MatchInfo[] getMatches()
     {
-        return getBackgammonTournamentData().getMatches().toArray(new MatchInfo[0]);
+        return getBackgammonTournamentData().getCurrentMatches().toArray(new MatchInfo[0]);
     }
 
     public static Player findPlayer(String name)
     {
         return getBackgammonTournamentData().findPlayer(name);
     }
+    private static void createFile(File file)
+    {
+        Gson gson = gsonBuilder.create();
+        if(!file.exists())
+        {
+            try
+            {
+                Files.copy(TEMPLATE_DATA_FILE.toPath(),file.toPath());
+                //gson.toJson(backgammonTournamentData,new FileWriter(file));
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+
+        }
+    }
 
     public static void saveData()
     {
-//        System.out.println("Players\n====================================\n");
-//        for (Player player : GlobalData.PLAYERS_DATA)
-//        {
-//            System.out.println(player);
-//        }
 
+        Gson gson = gsonBuilder.create();
+        Player[] player = Controller.backgammonTournamentTable.getItems().toArray(new Player[0]);
+        MatchInfo[] currentMatches = Controller.currentMatchesTable.getItems().toArray(new MatchInfo[0]);
+        MatchInfo[] finishedMatches = Controller.finishedMatchesTable.getItems().toArray(new MatchInfo[0]);
+        FileIO.writeFile(dataFile.getPath(),gson.toJson(new BackgammonTournamentData(
+                player, currentMatches, finishedMatches)));
     }
 }

@@ -4,9 +4,7 @@ import com.joshuapetersen.backgammontournament.data.*;
 import com.joshuapetersen.backgammontournament.ui.components.BackgammonTournamentTable;
 import com.joshuapetersen.backgammontournament.ui.components.CurrentMatchesTable;
 import com.joshuapetersen.backgammontournament.ui.components.FinishedMatchesTable;
-import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
 import java.util.Arrays;
@@ -15,6 +13,7 @@ import static com.joshuapetersen.backgammontournament.data.GlobalData.*;
 
 public class Controller
 {
+
 
     @FXML
     BackgammonTournamentTable btt;
@@ -48,9 +47,10 @@ public class Controller
         Controller.backgammonTournamentData = DataManager.getBackgammonTournamentData();
         PLAYERS_DATA.setAll(backgammonTournamentData.getPlayers());
         backgammonTournamentTable.setItems(PLAYERS_DATA);
-
-        MATCHES_DATA.setAll(backgammonTournamentData.getMatches());
+        backgammonTournamentData.getCurrentMatches();
+        MATCHES_DATA.setAll(backgammonTournamentData.getCurrentMatches());
         currentMatchesTable.setItems(MATCHES_DATA);
+        FINISHED_MATCHES.setAll(backgammonTournamentData.getFinishedMatches());
 
     }
 

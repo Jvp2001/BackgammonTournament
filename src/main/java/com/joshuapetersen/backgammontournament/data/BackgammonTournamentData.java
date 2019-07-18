@@ -11,15 +11,16 @@ public class BackgammonTournamentData
     @SerializedName(value = "tournamentName", alternate = {"Name", "name", "Tournament Name", "TournamentName"})
     private String tournamentName = "Backgammon Tournament";
     @SerializedName(value = "pointsToWin", alternate = {"Points To Win", "PointsToWin"})
-    private final int pointsToWinGame;
+    private int pointsToWinGame = 11;
     @SerializedName(value = "players", alternate = {"Players", "Contestants", "contestants"})
     private Player[] players;
 
-    private List<MatchInfo> matches = new ArrayList<>();
+    private List<MatchInfo> currentMatches = new ArrayList<>();
+    private List<MatchInfo> finishedMatches = new ArrayList<>();
 
-    //transient MatchInfo[][] matches;
+    //transient MatchInfo[][] currentMatches;
 //    private BackgammonTournamentData(Player[] players)
-//    {
+//    {BackgammonTournamentData
 //        this.players.setAll(Arrays.asList(players));
 //    }
 //    public BackgammonTournamentData() {}
@@ -38,14 +39,22 @@ public class BackgammonTournamentData
         this.tournamentName = tournamentName;
         this.pointsToWinGame = pointsToWinGame;
         this.players = players;
-        this.matches = Arrays.asList(matches);
+        this.currentMatches = Arrays.asList(matches);
 
     }
 
-//    public  void storeMatches()
+    public BackgammonTournamentData(Player[] players,
+            List<MatchInfo> currentMatches,
+            List<MatchInfo> finishedMatches)
+    {
+        this.players = players;
+        this.currentMatches = currentMatches;
+        this.finishedMatches = finishedMatches;
+    }
+    //    public  void storeMatches()
 //    {
 //        Player[] players1 = this.players;
-//        matches = new MatchInfo[this.getPlayers().length-2][this.getPlayers().length-2];
+//        currentMatches = new MatchInfo[this.getPlayers().length-2][this.getPlayers().length-2];
 //        for (int i = 0; i < players1.length; i++)
 //        {
 //            Player player = players1[i];
@@ -56,14 +65,14 @@ public class BackgammonTournamentData
 //                String name = player.getContestantOne();
 //                if(!name.equalsIgnoreCase(player.getContestantOne()) && !player.hasMatches())
 //                {
-//                    player.getMatches()[j] = new MatchInfo(name,0);
+//                    player.getCurrentMatches()[j] = new MatchInfo(name,0);
 //                }
 //                else if (player.hasMatches())
 //                {
 //                    break;
 //                }
 //            }
-//                matches[i] = player.getMatches();
+//                currentMatches[i] = player.getCurrentMatches();
 //
 //
 //        }
@@ -74,6 +83,13 @@ public class BackgammonTournamentData
     {
         this.tournamentName = tournamentName;
         this.pointsToWinGame = pointsToWinGame;
+    }
+
+    public BackgammonTournamentData(Player[] player, MatchInfo[] currentMatches, MatchInfo[] finishedMatches)
+    {
+        this.players = player;
+        this.currentMatches = Arrays.asList(currentMatches);
+        this.finishedMatches = Arrays.asList(finishedMatches);
     }
 
 
@@ -115,8 +131,13 @@ public class BackgammonTournamentData
     }
 
 
-    public List<MatchInfo> getMatches()
+    public List<MatchInfo> getCurrentMatches()
     {
-        return matches;
+        return currentMatches;
+    }
+
+    public List<MatchInfo> getFinishedMatches()
+    {
+        return finishedMatches;
     }
 }
