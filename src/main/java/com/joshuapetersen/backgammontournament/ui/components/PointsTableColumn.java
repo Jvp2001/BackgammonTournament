@@ -31,7 +31,7 @@ public class PointsTableColumn extends AbstractAutoUpdateColumn<MatchInfo,String
     {
         super.setup();
         //this.getTableView().getStylesheets().setAll(getClass().getClassLoader().getResource("stylesheets/DefaultTableStyles.css").toExternalForm());
-        this.getStyleClass().setAll("Numbers");
+        this.getStyleClass().setAll("Number");
 
         this.setCellFactory(this::call);
         switch (contestant)

@@ -52,6 +52,7 @@ public class PointsCell extends TableCell<MatchInfo, String>
                 processEdit();
             }
         });
+        this.getStyleClass().add(".Number");
 
         textField.setOnAction(event -> processEdit());
 

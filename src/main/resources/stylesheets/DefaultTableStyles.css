@@ -3,10 +3,11 @@
     -fx-alignment: CENTER;
 }
 
+
 .table-row-cell:empty
 {
 
-    -fx-background-color: white;
+    -fx-background-color:-fx-darkmode;
 }
 
 .table-row-cell:empty .table-cell

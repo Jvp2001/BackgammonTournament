@@ -30,7 +30,7 @@
                 <content>
                     <VBox>
                         <children>
-                            <BackgammonTournamentTable fx:id="btt"/>
+                            <BackgammonTournamentTable fx:id="btt" stylesheets="/stylesheets/DefaultTableStyles.css"/>
                             <VBox>
                                 <children>
                                     <Label styleClass="TableTitle"
@@ -40,7 +40,7 @@
                                             <Font name="System Bold" size="16.0"/>
                                         </font>
                                     </Label>
-                                    <CurrentMatchesTable fx:id="cmt"/>
+                                    <CurrentMatchesTable fx:id="cmt" stylesheets="/stylesheets/DefaultTableStyles.css"/>
                                 </children>
                             </VBox>
                         </children>

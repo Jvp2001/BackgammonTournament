@@ -1,0 +1,11 @@
+/*
+Taken from here: https://dlsc.com/2017/07/03/javafx-tip-26/
+ */
+*
+{
+    -fx-darkmode: rgba(60, 63, 65, 255);
+}
+.root
+{
+    -fx-base:  -fx-darkmode; /*dark*/
+}
