@@ -82,6 +82,7 @@ public class DataManager
     public static void overridePlayers(Player... players)
     {
         getBackgammonTournamentData().setPlayers(players);
+
         storeTournamentData();
     }
 

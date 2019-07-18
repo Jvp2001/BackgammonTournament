@@ -42,12 +42,12 @@ public class MatchInfo
 
         checkForGameFinished();
 
-        if(getContestantOnePoints() >= 11)
+        if(getContestantOnePoints() >= DataManager.getBackgammonTournamentData().getPointsToWin())
         {
             this.wonBy = MatchWonBy.CONTESTENT_ONE;
             this.winner = getContestantOne();
         }
-        else if(getContestantTwoPoints() >= 11)
+        else if(getContestantTwoPoints() >= DataManager.getBackgammonTournamentData().getPointsToWin())
         {
             this.wonBy = MatchWonBy.CONTESTENT_TWO;
             this.winner = getContestantTwo();

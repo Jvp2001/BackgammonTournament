@@ -3,8 +3,35 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <properties>
+        <mainClass>com.joshuapetersen.backgammontournament.main.Main</mainClass>
+    </properties>
+    <description>
+        A Backgammon Tournament App for my holiday.
+    </description>
     <build>
         <plugins>
+            <plugin>
+                <groupId>com.zenjava</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>8.5.0</version>
+                <configuration>
+                    <appName>${project.name}</appName>
+                    <title>${project.name}</title>
+                    <description>${project.description}</description>
+                    <vendor>Joshua Petersen</vendor>
+                    <certCountry>com</certCountry>
+                    <mainClass>${mainClass}</mainClass>
+                    <needMenu>true</needMenu>
+                    <additionalAppResources>src/main/deploy/package/all</additionalAppResources>
+                    <bundleArguments>
+<!--                        <icon.ico>src/main/resources/icons/Icon.ico</icon.ico>-->
+                        <icon.png>src/main/resources/images/iconbig.png</icon.png>
+<!--                        <icon.icns>src/main/resources/icons/Icon.icns</icon.icns>-->
+                    </bundleArguments>
+                    <jfxMainAppJarName>${project.build.finalName}.jar</jfxMainAppJarName>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -12,6 +39,7 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+
                 </configuration>
             </plugin>
             <plugin>
@@ -20,6 +48,7 @@
                 <version>2.3.2</version>
                 <configuration>
                     <finalName>Backgammon Tournament</finalName>
+
                 </configuration>
             </plugin>
             <plugin>
